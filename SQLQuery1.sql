@@ -66,17 +66,23 @@ drop table storing_property
 create table storing_property
 (
 fk_pcode int unique not null,
-fk_sname varchar(15) not null unique,
-foreign key (fk_pcode) references dormproperty(pcode),
+fk_sname varchar(15)  unique,
+foreign key (fk_pcode) references dormproperty(pcode) 
+on delete cascade on update cascade,
+
 foreign key (fk_sname) references store(sname)
+on update cascade on delete set null
 );
+
 drop table controling
 create table controling
 (
 fk_pcode int not null,
 fk_ridnumber varchar(10) not null,
-foreign key (fk_pcode) references dormproperty(pcode),
-foreign key (fk_ridnumber) references responsible(fk_ridnumber),
+foreign key (fk_pcode) references dormproperty(pcode)
+on update cascade on delete cascade,
+foreign key (fk_ridnumber) references responsible(fk_ridnumber)
+on delete no action,
 primary key(fk_pcode,fk_ridnumber)
 );
 
@@ -101,52 +107,58 @@ create table consume
 (
 fk_pcode int not null,
 fk_widnumber varchar(10) not null,
-foreign key (fk_pcode) references dormproperty(pcode),
-foreign key (fk_widnumber) references worker(fk_widnumber),
+foreign key (fk_pcode) references dormproperty(pcode)
+on update cascade on delete no action,
+foreign key (fk_widnumber) references worker(fk_widnumber)
+on delete no action,
 primary key(fk_pcode,fk_widnumber)
 );
 
 drop table rhurt
 create table rhurt
 (
-rhurt_id int not null primary key identity(1,1),
+rhurt_id int not null primary key identity(1,2),
 fk_pcode int not null,
 fk_ridnumber varchar(10) not null,
-foreign key (fk_pcode) references dormproperty(pcode),
-foreign key (fk_ridnumber) references responsible(fk_ridnumber),
+foreign key (fk_pcode) references dormproperty(pcode)
+on update cascade on delete no action,
+foreign key (fk_ridnumber) references responsible(fk_ridnumber)
+on delete no action
 
 );
+
 drop table shurt
 create table shurt
 (
+shurt_id int not null primary key identity(2,2),
 fk_pcode int not null,
 fk_sidnumber varchar(10) not null,
-foreign key (fk_pcode) references dormproperty(pcode),
-foreign key (fk_sidnumber) references student(fk_sidnumber),
-primary key(fk_pcode,fk_sidnumber)
+foreign key (fk_pcode) references dormproperty(pcode)
+on update cascade on delete no action,
+foreign key (fk_sidnumber) references student(fk_sidnumber)
+on delete no action
 );
 
 create table rpay
 (
 paydate date not null,
-fk_ridnumber  varchar (10) not null ,
+fk_rhurtid int not null unique,
 fk_daddress varchar(100) not null ,
-fk_pcode int not null unique,
-primary key(fk_pcode,fk_ridnumber),
-foreign key (fk_ridnumber) references rhurt(fk_ridnumber),
-foreign key (fk_pcode) references rhurt(fk_pcode),
+foreign key (fk_rhurtid) references rhurt(rhurt_id)
+on delete no action,
 foreign key (fk_daddress) references dormmanagement (daddress)
+on update cascade on delete no action
 );
 
 create table spay
 (
 paydate date not null,
-fk_sidnumber  varchar (10) not null ,
+fk_shurtid int not null unique,
 fk_daddress varchar(100) not null ,
-fk_pcode int not null unique,
-foreign key (fk_sidnumber) references shurt(fk_sidnumber),
-foreign key (fk_pcode) references shurt(fk_pcode),
+foreign key (fk_shurtid) references shurt(shurt_id)
+on delete no action,
 foreign key (fk_daddress) references dormmanagement (daddress)
+on update cascade on delete no action
 );
 
 drop table tempproperty
