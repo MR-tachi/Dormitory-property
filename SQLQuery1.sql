@@ -23,6 +23,8 @@ foreign key (fk_daddress) references dormmanagement(daddress)
 on delete set null on update cascade
 );
 
+alter table dormproperty drop column pbuydate;
+alter table dormproperty add pbuydate datetime;
 create table people
 (
 id_number varchar(10) not null unique ,
@@ -66,13 +68,15 @@ drop table storing_property
 create table storing_property
 (
 fk_pcode int unique not null,
-fk_sname varchar(15)  unique,
+fk_sname varchar(15)  ,
 foreign key (fk_pcode) references dormproperty(pcode) 
 on delete cascade on update cascade,
 
 foreign key (fk_sname) references store(sname)
 on update cascade on delete set null
 );
+
+
 
 drop table controling
 create table controling
