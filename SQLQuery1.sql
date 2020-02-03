@@ -181,4 +181,17 @@ fk_pcode int not null unique,
 cost int not null,
 foreign key (fk_pcode) references dormproperty(pcode)
 on delete cascade on update cascade
-);
+);	
+
+alter table store
+add constraint cap_check check(capacity > 0)
+
+
+alter table dormproperty 
+add constraint price_limit check (price <10000000)
+
+
+
+create assertion hurt_constraint 
+CHECK ( NOT EXISTS ( SELECT * FROM dormproperty join eternalproperty on pcode=fk_pcode)
+WHERE (price>cost)); -- deleted from sql :|

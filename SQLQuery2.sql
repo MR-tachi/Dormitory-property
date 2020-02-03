@@ -157,3 +157,7 @@ insert into eternalproperty values (10029,6000)
 insert into eternalproperty values (10030,6000)
 insert into eternalproperty values (10031,6000)
 insert into eternalproperty values (10032,6000)
+
+
+delete from eternalproperty where (fk_pcode=10032)
+insert into eternalproperty values (10032,6000) --test trigger
