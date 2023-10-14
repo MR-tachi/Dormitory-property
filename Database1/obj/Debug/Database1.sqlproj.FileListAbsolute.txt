@@ -3,3 +3,7 @@ C:\Users\Acer\documents\visual studio 2017\Projects\Database1\Database1\bin\Debu
 C:\Users\Acer\documents\visual studio 2017\Projects\Database1\Database1\bin\Debug\Database1.pdb
 C:\Users\Acer\documents\visual studio 2017\Projects\Database1\Database1\obj\Debug\Database1.dll
 C:\Users\Acer\documents\visual studio 2017\Projects\Database1\Database1\obj\Debug\Database1.pdb
+C:\Users\Acer\Documents\Visual Studio 2017\Projects\Database1\Database1\obj\Debug\Model.xml
+C:\Users\Acer\Documents\Visual Studio 2017\Projects\Database1\Database1\obj\Debug\refactor.xml
+C:\Users\Acer\Documents\Visual Studio 2017\Projects\Database1\Database1\obj\Debug\postdeploy.sql
+C:\Users\Acer\Documents\Visual Studio 2017\Projects\Database1\Database1\obj\Debug\predeploy.sql

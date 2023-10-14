@@ -9,10 +9,22 @@ drop view hurts;
 select * from hurts;
   
 create view name_hurt (f_name,l_name,p_name,cost)
-as select fname,lname , pname,cost
+as select fname,lname ,id_number,pcode , pname,cost
 from (hurts join people on national_id = id_number)
 join dormproperty on hurts.pcode = dormproperty.pcode
 join eternalproperty on fk_pcode = hurts.pcode 
+
+
+select fname,lname ,id_number , fk_pcode , pname,cost
+from (hurts join people on national_id = id_number)
+join dormproperty on hurts.pcode = dormproperty.pcode
+join eternalproperty on fk_pcode = hurts.pcode 
+
+
+select fname,lname,id_number,fk_pcode , pname,cost 
+                from(hurts join people on national_id = id_number)
+                join dormproperty on hurts.pcode = dormproperty.pcode
+                join eternalproperty on fk_pcode = hurts.pcode 
 
 
 select * from name_hurt
@@ -38,6 +50,7 @@ exec bad_branch @br = "comp"--test procedure
 exec bad_branch @br = "mech"--test procedure
 
 
+select * from name_hurt
 
 create procedure expensive @cost int 
 as

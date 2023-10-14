@@ -107,7 +107,7 @@ insert into rhurt(fk_pcode,fk_ridnumber) values ('10030','1078302602')
 
 insert into shurt(fk_pcode,fk_sidnumber) values ('10004','4493048107')
 
-select * from shurt
+select * from rhurt
 
 
 insert into rpay values ( '2020-01-03',1,'khiaban hamekasi')
@@ -161,3 +161,10 @@ insert into eternalproperty values (10032,6000)
 
 delete from eternalproperty where (fk_pcode=10032)
 insert into eternalproperty values (10032,6000) --test trigger
+
+
+
+
+select * from shurt;
+
+delete from shurt where'10017' = fk_pcode and '3820556890' = fk_sidnumber
